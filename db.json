@@ -2,33 +2,12 @@
   "users": [
     {
       "id": 1,
-      "age": 40,
       "name": "Lodewyk"
     },
     {
       "name": "Yolandi",
       "age": 35,
       "id": 2
-    },
-    {
-      "name": "Yolandi",
-      "age": 35,
-      "id": 3
-    },
-    {
-      "name": "Yolandi",
-      "age": 35,
-      "id": 4
-    },
-    {
-      "name": "Yolandi",
-      "age": 35,
-      "id": 5
-    },
-    {
-      "name": "Yolandi",
-      "age": 35,
-      "id": 6
     }
   ]
 }

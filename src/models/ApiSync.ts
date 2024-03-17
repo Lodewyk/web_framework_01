@@ -1,10 +1,11 @@
 import axios, { AxiosPromise, AxiosResponse } from "axios";
 
+// ensures that an object always has an id property, so that it can be saved in the database
 interface HasId {
     id?: number
 }
 
-export class Sync<DataObjProps extends HasId> {
+export class ApiSync<DataObjProps extends HasId> {
     constructor (public url: string) {}
 
     /**

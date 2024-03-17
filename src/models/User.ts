@@ -1,7 +1,8 @@
-
+import { ApiSync } from "./ApiSync";
 import { Attributes } from "./Attributes";
+import { Collection } from "./Collection";
 import { Eventing } from "./Eventing";
-import { Sync } from "./Sync";
+import { Model } from "./Model";
 
 export interface UserProps {
     id?: number; // ? indicates an option interface property
@@ -11,32 +12,28 @@ export interface UserProps {
 
 const url = 'http://localhost:3000/users';
 
-export class User {
-    public events: Eventing = new Eventing();
-    public sync: Sync<UserProps> = new Sync<UserProps>(url);
-    public attributes: Attributes<UserProps>;
-
-    constructor(attrs: UserProps) {
-        this.attributes = new Attributes<UserProps>(attrs);
+export class User extends Model<UserProps> {
+    static buildUser(attrs: UserProps): User {
+        /*
+         * User has no construct, but it extends Model, which requires some params to be passed through
+         * to it's constructor. These params need to be compatible with the interfaces specified in the Model
+         * class.
+         */
+        return new User(
+            new Attributes<UserProps>(attrs),
+            new Eventing(),
+            new ApiSync<UserProps>(url)
+        );
     }
-    
-    get get() {
-        return this.attributes.get;
-    }
 
-    set() {}
-
-    /*
-     * This getter returns the on() function inside Eventing (defined as "events" in this class) 
+    /**
+     * Getting a bit whacky here but essentially this is going to init a collection of user objects
+     * by init'ing a collection and calling the buildUser method defined in this class to init each
+     * User object in the collection
      */
-    get on() {
-        return this.events.on;
+    static buildUserCollection(): Collection<User, UserProps> {
+        return new Collection<User, UserProps>(
+            url, (json: UserProps) => User.buildUser(json)
+        )
     }
-
-    get trigger() {
-        return this.events.trigger;
-    }
-
-    fetch() {}
-    save() {}
 }
