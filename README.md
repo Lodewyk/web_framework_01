@@ -1,5 +1,5 @@
 # web_framework_01
 
-tiny web framework for practice
+Tiny web framework for practice
 
-### @TODO explain setup, installed libraries etc
+This is based on backbone.js and marionette, done while following this Udemy course
