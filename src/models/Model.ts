@@ -41,7 +41,7 @@ interface Events {
 }
 
 // ensures that an object always has an id property, so that it can be saved in the database
-interface HasId {
+export interface HasId {
     id?: number
 }
 
