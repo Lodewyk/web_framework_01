@@ -6,5 +6,5 @@ This is based on backbone.js and marionette, done while following this <a href="
 
 ### Commands to run this locally
 
-1. Start up database: npm run start:db
-2. Run parce: npm run start:parcel
+1. Start up database: `npm run start:db`
+2. Run parce: `npm run start:parcel`
